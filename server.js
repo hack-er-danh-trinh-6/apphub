@@ -63,6 +63,29 @@ const upload = multer({
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+// Keep the free Render web service warm by requesting its public health URL.
+// Render supplies RENDER_EXTERNAL_URL automatically; this timer exists only
+// while the app process is running and is not started during local development.
+const selfPingBaseUrl = process.env.RENDER === 'true' && process.env.RENDER_EXTERNAL_URL
+  ? process.env.RENDER_EXTERNAL_URL.replace(/\/+$/, '')
+  : '';
+if (selfPingBaseUrl) {
+  const selfPing = async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch(`${selfPingBaseUrl}/health`, { signal: controller.signal });
+      if (!response.ok) console.warn(`Render self-ping returned HTTP ${response.status}`);
+    } catch (error) {
+      console.warn(`Render self-ping failed: ${error.message}`);
+    } finally {
+      clearTimeout(timeout);
+    }
+  };
+  const timer = setInterval(selfPing, 5 * 60 * 1000);
+  timer.unref();
+  console.log(`Render self-ping enabled for ${selfPingBaseUrl} every 5 minutes`);
+}
 const find = (id) => load().find((item) => item.id === id);
 const publicApp = (item) => {
   const { apkFile, iconFile, ...rest } = item;

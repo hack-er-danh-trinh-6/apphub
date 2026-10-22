@@ -27,24 +27,13 @@ Sau deploy, mở URL Render để xem trang chính. Vào `/#/admin` để đăng
 
 ### Tự ping để hạn chế Render Free sleep
 
-Tiến trình Render không thể tự ping khi đã sleep vì tiến trình của nó cũng đã dừng. Repo có workflow GitHub Actions độc lập tại `.github/workflows/render-keepalive.yml`; workflow gọi `/health` mỗi 10 phút.
+`server.js` dùng biến Render tự cấp `RENDER_EXTERNAL_URL` để gọi endpoint `/health` của chính dịch vụ mỗi 5 phút. Không cần cài `axios`, nhập URL Render, tạo GitHub Actions workflow hoặc cấu hình dịch vụ ping bên ngoài. Bộ hẹn giờ chỉ chạy trên Render.
 
-Sau khi deploy và có URL Render:
+Sau khi deploy, nếu Render khởi động ứng dụng thì các request tự ping sẽ giữ traffic đều đặn. Nếu service đã sleep hoặc bị restart, tiến trình hẹn giờ không thể tự chạy khi nó đang dừng; request đầu tiên từ người dùng sẽ đánh thức service, sau đó self-ping tiếp tục. Cách này giúp hạn chế sleep nhưng không ngăn được restart ngoài ý muốn hay các giới hạn/quy tắc Render Free.
 
-1. Mở repository trên GitHub → **Settings** → **Secrets and variables** → **Actions** → **Variables**.
-2. Chọn **New repository variable** và đặt **Name** là `RENDER_BASE_URL`.
-3. Đặt **Value** thành URL gốc của Web Service, ví dụ `https://apphub-pop-ai.onrender.com` (không thêm `/health`).
-4. Mở tab **Actions**, bật workflow nếu GitHub yêu cầu. Có thể chọn **Render keep-alive** → **Run workflow** để kiểm tra ngay.
+Render Free có quota 750 instance-hours mỗi workspace mỗi tháng, dùng chung với các Free service khác. Self-ping liên tục có thể dùng gần hết quota đó. Xem [giới hạn Render Free](https://render.com/docs/free).
 
-Workflow chỉ chạy ping khi biến `RENDER_BASE_URL` được thiết lập. GitHub schedule không đảm bảo chạy đúng từng phút và có thể bị trễ; vì vậy cách này hạn chế việc sleep chứ không bảo đảm tuyệt đối rằng Render luôn thức.
-
-### Chi phí và giới hạn
-
-Render Free sleep sau 15 phút không có traffic. Giữ service hoạt động liên tục có thể dùng gần hết quota 750 instance-hours mỗi workspace mỗi tháng, quota này được chia sẻ với các Free service khác. Xem [giới hạn Render Free](https://render.com/docs/free).
-
-Repo này private. GitHub Free có 2,000 Actions minutes mỗi tháng cho private repos; lịch 10 phút/lần tương ứng khoảng 4,320 workflow runs trong 30 ngày. Thời lượng mỗi job dùng Actions minutes, nên hãy theo dõi **Settings → Billing and licensing → Usage**. Khi hết quota, workflow có thể bị chặn; nếu bật billing cho Actions, phần vượt quota có thể bị tính phí. Xem [GitHub Actions billing](https://docs.github.com/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
-
-Gói Render Free không hỗ trợ persistent disk. Dữ liệu, lượt tải và file upload trong `/tmp/apphub-data` vẫn có thể mất khi Render restart hoặc deploy lại. Workflow ping không làm filesystem trở nên bền vững. Xem [giới hạn Render Free](https://render.com/docs/free).
+Filesystem Free vẫn tạm thời. Database, lượt tải và file upload trong `/tmp/apphub-data` có thể mất khi service restart hoặc deploy lại; self-ping không làm dữ liệu bền vững.
 
 ## Cập nhật APK
 
