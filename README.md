@@ -57,3 +57,16 @@ Mở `http://localhost:3000`. Mặc định dữ liệu local nằm ở `data.js
 ## Cấu hình Blueprint tùy chọn
 
 Repo vẫn có `render.yaml` với cùng cài đặt Web Service Free. Chỉ dùng file này nếu muốn tạo service bằng **New > Blueprint** thay vì tạo Web Service trực tiếp như các bước bên trên.
+
+
+## Giữ Render Free thức bằng UptimeRobot
+
+Render Free có thể sleep sau 15 phút không có request. Sau khi Web Service đã deploy và có URL, tạo một HTTP(s) monitor miễn phí trên [UptimeRobot](https://uptimerobot.com/):
+
+1. Tạo monitor loại **HTTP(s)**.
+2. Đặt URL thành `https://<URL-render-của-bạn>/health` (đường dẫn `/health` trả về `ok`).
+3. Chọn chu kỳ kiểm tra **5 minutes**. Gói UptimeRobot Free hiện hỗ trợ kiểm tra mỗi 5 phút ([chi tiết](https://uptimerobot.com/pricing/)).
+
+Các request định kỳ thường giữ instance hoạt động, nhưng không đảm bảo Render sẽ không restart dịch vụ. Render Free cấp 750 instance-hours mỗi workspace mỗi tháng; nếu một instance được giữ hoạt động liên tục thì sẽ dùng gần hết quota tháng, phần quota này còn được chia sẻ với các Free service khác trong workspace. Nếu hết quota, Render tạm ngưng các Free service đến tháng sau. Xem [giới hạn Render Free](https://render.com/docs/free).
+
+UptimeRobot chỉ gọi health endpoint; nó không làm filesystem Free trở nên bền vững. Database, lượt tải và file upload vẫn có thể mất khi Render restart hoặc deploy lại. Không dùng GitHub Actions 10-phút/lần cho mục đích này trong repo private nếu muốn bảo toàn quota: GitHub Free có 2,000 Actions minutes/tháng cho repo private ([chi tiết](https://docs.github.com/billing/managing-billing-for-github-actions/about-billing-for-github-actions)).
