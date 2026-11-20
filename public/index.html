@@ -39,10 +39,6 @@ p{margin:0}
 .srch input{width:100%;height:46px;padding:0 18px 0 46px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
 .srch input::placeholder{color:var(--mut)}
 .srch svg{position:absolute;left:16px;top:13px;width:20px;height:20px;color:var(--mut);pointer-events:none}
-.nav{margin-left:auto}
-.nav a{display:inline-block;padding:9px 16px;border-radius:999px;font-weight:500;color:var(--mut)}
-.nav a:hover,body[data-r=admin] .nav a{background:var(--soft);color:var(--ink)}
-body[data-r=admin] .srch{display:none}
 
 main{width:100%;max-width:1200px;margin:0 auto;padding:28px 24px 72px;flex:1}
 main:empty{min-height:60vh}
@@ -57,7 +53,6 @@ footer div{max-width:1200px;margin:0 auto;padding:20px 24px}
 .btn.alt{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
 .btn.sm{height:36px;padding:0 18px;font-size:14px}
 .btn[disabled]{cursor:default;filter:none;transform:none}
-.btn.prog{background-image:linear-gradient(90deg,rgba(128,128,128,.4) var(--p,0%),transparent var(--p,0%))}
 
 /* Icon ứng dụng */
 .ic{width:100%;aspect-ratio:1;object-fit:cover;border-radius:22%;background:var(--soft);outline:1px solid rgba(20,24,41,.1);outline-offset:-1px}
@@ -130,45 +125,12 @@ footer div{max-width:1200px;margin:0 auto;padding:20px 24px}
 .info dt{color:var(--mut)}
 .info dd{margin:0;font-weight:600;text-align:right;overflow-wrap:anywhere}
 
-/* Quản trị */
-.login{display:grid;gap:16px;max-width:400px;margin:8vh auto 0}
-.login h1{font-size:34px;font-weight:800;letter-spacing:-.03em}
-.login>p{color:var(--mut)}
-.err{min-height:1.4em;font-size:14px;color:var(--danger)}
-.field{display:grid;gap:6px;font-size:14px;font-weight:500}
-.field input,.field select,.field textarea{width:100%;height:46px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-weight:400}
-.field textarea{height:auto;min-height:110px;padding:12px 14px;resize:vertical}
-.adm-h{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.adm-h h1{font-size:36px;font-weight:800;letter-spacing:-.035em}
-.kpi{display:flex;flex-wrap:wrap;gap:12px 48px;margin-top:24px}
-.kpi b{display:block;font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.2}
-.kpi span{font-size:14px;color:var(--mut)}
-.adm{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:56px;margin-top:36px;align-items:start}
-.adm h2{font-size:22px}
-.uf{display:grid;gap:16px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.drop{position:relative;display:grid;place-items:center;align-content:center;gap:6px;min-height:132px;padding:14px;border:1.5px dashed var(--line);border-radius:16px;background:var(--surface);text-align:center;color:var(--mut);cursor:pointer;transition:border-color .15s}
-.drop:hover,.drop.over{border-color:var(--ink);color:var(--ink)}
-.drop:focus-within{outline:3px solid var(--focus);outline-offset:3px}
-.drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
-.dz{display:grid;justify-items:center;gap:4px;min-width:0}
-.dz b{color:var(--ink)}
-.dz small{font-size:13px}
-.dz img{width:64px;height:64px;border-radius:22%;object-fit:cover}
-.dz .fn{max-width:100%;font-size:14px;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
-.al{margin:12px 0 0;padding:0;list-style:none}
-.al li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.al b{display:block;font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.meta{display:flex;flex-wrap:wrap;gap:0 16px;font-size:13px;color:var(--mut)}
-.del{padding:8px 14px;border:0;border-radius:999px;background:transparent;font-weight:500;color:var(--mut)}
-.del:hover{background:var(--soft);color:var(--danger)}
-.del[data-armed]{background:#d92d20;color:#fff}
 
 #toast{position:fixed;left:50%;bottom:24px;z-index:50;max-width:calc(100vw - 32px);padding:12px 22px;border-radius:999px;background:var(--btn);color:var(--btn-t);font-weight:500;text-align:center;opacity:0;transform:translate(-50%,16px);pointer-events:none;transition:opacity .2s,transform .2s}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
 @media (max-width:860px){
-  .dbody,.adm{grid-template-columns:minmax(0,1fr);gap:40px}
+  .dbody{grid-template-columns:minmax(0,1fr);gap:40px}
 }
 @media (max-width:720px){
   .top-in{flex-wrap:wrap;gap:12px;padding:10px 16px}
@@ -187,9 +149,7 @@ footer div{max-width:1200px;margin:0 auto;padding:20px 24px}
   .sec h2{font-size:22px}
   .hero .acts .btn,.dh .acts .btn{flex:1 1 100%}
   .dh-top>div{width:100%}
-  .adm-h h1{font-size:30px}
 }
-@media (max-width:480px){.two.pick{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -203,7 +163,6 @@ footer div{max-width:1200px;margin:0 auto;padding:20px 24px}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Tìm ứng dụng hoặc nhà phát triển" aria-label="Tìm ứng dụng" autocomplete="off">
   </div>
-  <nav class="nav"><a href="#/admin">Quản trị</a></nav>
 </div></header>
 <main id="app"></main>
 <footer><div>Tệp APK do quản trị viên đăng tải. Chỉ cài đặt ứng dụng từ nguồn bạn tin tưởng.</div></footer>
@@ -212,23 +171,21 @@ footer div{max-width:1200px;margin:0 auto;padding:20px 24px}
 <script>
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const nf=new Intl.NumberFormat('vi-VN');
 const size=b=>b>=1073741824?(b/1073741824).toFixed(1)+' GB':b>=1048576?(b/1048576).toFixed(b>=10485760?0:1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
 const ver=v=>/^\d/.test(v)?'v'+v:v;
-const day=s=>new Date(s).toLocaleDateString('vi-VN');
+const day=s=>new Date(/^\d{4}-\d{2}-\d{2}$/.test(s)?s+'T00:00':s).toLocaleDateString('vi-VN');
 const svg=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
 const I={
   dl:svg('<path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/>'),
   back:svg('<path d="M15 5l-7 7 7 7"/>'),
   link:svg('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>')
 };
-const CATS=['Ứng dụng','Trò chơi','Công cụ','Giải trí','Mạng xã hội','Giáo dục','Khác'];
-const ss={get:()=>{try{return sessionStorage.getItem('tok')||''}catch{return ''}},set:v=>{try{v?sessionStorage.setItem('tok',v):sessionStorage.removeItem('tok')}catch{}}};
-let apps=[],cat='',sort='new',tok=ss.get(),tt;
+let apps=[],cat='',sort='new',tt;
 const pal=new Map();
 
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3600)}
-const ic=(a,c='')=>`<img class="ic ${c}" src="/api/apps/${a.id}/icon" alt="" data-n="${esc(((a.name||'?').trim()[0]||'?').toUpperCase())}">`;
+const dl=a=>`href="${esc(a.apkUrl)}" download="${esc(a.name.replace(/[^\w.-]+/g,'_')+'-'+a.version+'.apk')}"`;
+const ic=(a,c='')=>`<img class="ic ${c}" src="${esc(a.iconUrl)}" alt="" data-n="${esc(((a.name||'?').trim()[0]||'?').toUpperCase())}">`;
 
 /* Lấy màu chủ đạo từ icon để tô màu banner */
 function hsl(r,g,b){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn;let h=0,s=0;if(d){s=d/(1-Math.abs(2*l-1));h=(mx===r?((g-b)/d+6)%6:mx===g?(b-r)/d+2:(r-g)/d+4)*60}return[h,s,l]}
@@ -249,47 +206,48 @@ function palette(img){
   const[h,s]=hsl(sum[k][0]/w[k],sum[k][1]/w[k],sum[k][2]/w[k]);
   return{'--cd':`hsl(${Math.round(h)} ${Math.round(Math.min(Math.max(s,.4),.75)*100)}% 22%)`};
 }
-function tint(el,id){
-  const set=c=>c&&Object.entries(c).forEach(([k,v])=>el.style.setProperty(k,v));
+function tint(el){
+  const id=el.dataset.tint,set=c=>c&&Object.entries(c).forEach(([k,v])=>el.style.setProperty(k,v));
   if(pal.has(id))return set(pal.get(id));
   const i=new Image();
   i.onload=()=>{const c=palette(i);pal.set(id,c);set(c)};
-  i.src=`/api/apps/${id}/icon`;
+  i.src=el.dataset.icon;
 }
-const tintAll=()=>document.querySelectorAll('[data-tint]').forEach(el=>tint(el,el.dataset.tint));
+const tintAll=()=>document.querySelectorAll('[data-tint]').forEach(el=>tint(el));
 
 /* Điều hướng */
-async function route(keep){
+let ready;
+const load=()=>ready||(ready=fetch('apps.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>Array.isArray(d)?d.sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||''))):[]).catch(()=>{ready=null;toast('Không tải được danh sách ứng dụng. Tải lại trang để thử lại.');return[]}));
+async function route(){
   const h=location.hash||'#/';
-  document.body.dataset.r=h.startsWith('#/app/')?'app':h==='#/admin'?'admin':'home';
-  try{apps=await(await fetch('/api/apps')).json()}catch{toast('Không kết nối được máy chủ. Tải lại trang để thử lại.')}
-  if(!Array.isArray(apps))apps=[];
-  h.startsWith('#/app/')?detail(h.slice(6)):h==='#/admin'?admin():home();
-  if(keep!==true)scrollTo(0,0);
+  document.body.dataset.r=h.startsWith('#/app/')?'app':'home';
+  apps=await load();
+  h.startsWith('#/app/')?detail(h.slice(6)):home();
+  scrollTo(0,0);
 }
 
 /* Trang chủ */
-const hero=a=>`<section class="hero" data-tint="${a.id}">${ic(a,'hero-ic')}<div>
+const hero=a=>`<section class="hero" data-tint="${a.id}" data-icon="${esc(a.iconUrl)}">${ic(a,'hero-ic')}<div>
   <h1>${esc(a.name)}</h1><p class="dev">${esc(a.developer)}</p>
   ${a.description?`<p class="d">${esc(a.description.slice(0,200))}</p>`:''}
-  <div class="acts"><a class="btn" href="/api/apps/${a.id}/download">${I.dl}Tải APK <span class="num">${size(a.size)}</span></a><a class="btn alt" href="#/app/${a.id}">Xem chi tiết</a></div>
+  <div class="acts"><a class="btn" ${dl(a)}>${I.dl}Tải APK <span class="num">${size(a.size)}</span></a><a class="btn alt" href="#/app/${a.id}">Xem chi tiết</a></div>
 </div></section>`;
 const row=a=>`<article class="row">${ic(a)}<div class="t"><b><a href="#/app/${a.id}">${esc(a.name)}</a></b><span class="s">${esc(a.developer)}</span><span class="s">${esc(a.category)}</span></div>
-<div class="g"><a class="btn sm" href="/api/apps/${a.id}/download" aria-label="Tải APK ${esc(a.name)}">Tải</a><small class="num">${size(a.size)}</small></div></article>`;
+<div class="g"><a class="btn sm" ${dl(a)} aria-label="Tải APK ${esc(a.name)}">Tải</a><small class="num">${size(a.size)}</small></div></article>`;
 
 function home(){
   document.title='AppHub';
   const m=$('#app');
-  if(!apps.length){m.innerHTML=`<section class="empty"><h1>Chưa có ứng dụng nào</h1><p>Đăng file APK đầu tiên để mọi người có thể tải về.</p><a class="btn" href="#/admin">Đăng ứng dụng</a></section>`;return}
+  if(!apps.length){m.innerHTML=`<section class="empty"><h1>Chưa có ứng dụng nào</h1><p>Danh sách đang trống. Hãy quay lại sau nhé.</p></section>`;return}
   const raw=$('#q').value.trim(),q=raw.toLowerCase(),cats=[...new Set(apps.map(a=>a.category))];
   if(cat&&!cats.includes(cat))cat='';
   let list=apps.filter(a=>(!cat||a.category===cat)&&(!q||`${a.name} ${a.developer}`.toLowerCase().includes(q)));
-  if(sort==='dl')list=[...list].sort((a,b)=>b.downloads-a.downloads);
+  if(sort==='az')list=[...list].sort((a,b)=>a.name.localeCompare(b.name,'vi'));
   const chip=(c,n)=>`<button class="chip" aria-pressed="${cat===c}" data-cat="${esc(c)}">${esc(c||'Tất cả')}<small class="num">${n}</small></button>`;
   const title=q?`Kết quả cho “${esc(raw)}”`:cat?esc(cat):'Tất cả ứng dụng';
   m.innerHTML=`${!q&&!cat?hero(apps[0]):''}
 <div class="chips">${chip('',apps.length)}${cats.map(c=>chip(c,apps.filter(a=>a.category===c).length)).join('')}</div>
-<div class="sec"><h2>${title}</h2><div class="seg" role="group" aria-label="Sắp xếp"><button data-sort="new" aria-pressed="${sort==='new'}">Mới nhất</button><button data-sort="dl" aria-pressed="${sort==='dl'}">Tải nhiều nhất</button></div></div>
+<div class="sec"><h2>${title}</h2><div class="seg" role="group" aria-label="Sắp xếp"><button data-sort="new" aria-pressed="${sort==='new'}">Mới nhất</button><button data-sort="az" aria-pressed="${sort==='az'}">Tên A–Z</button></div></div>
 ${list.length?`<div class="list">${list.map(row).join('')}</div>`:`<p class="none">Không có ứng dụng nào khớp. Thử từ khóa khác hoặc chọn danh mục Tất cả.</p>`}`;
   tintAll();
 }
@@ -301,12 +259,12 @@ function detail(id){
   document.title=`${a.name} | AppHub`;
   const rel=apps.filter(x=>x.category===a.category&&x.id!==a.id).slice(0,12);
   m.innerHTML=`<a class="back" href="#/">${I.back}Tất cả ứng dụng</a>
-<section class="dh" data-tint="${a.id}">
+<section class="dh" data-tint="${a.id}" data-icon="${esc(a.iconUrl)}">
   <div class="dh-top">${ic(a,'dh-ic')}<div>
     <h1>${esc(a.name)}</h1><p class="dev">${esc(a.developer)}</p>
-    <div class="acts"><a class="btn" href="/api/apps/${a.id}/download">${I.dl}Tải APK</a><button class="btn alt" id="cp" type="button">${I.link}Sao chép liên kết</button></div>
+    <div class="acts"><a class="btn" ${dl(a)}>${I.dl}Tải APK</a><button class="btn alt" id="cp" type="button">${I.link}Sao chép liên kết</button></div>
   </div></div>
-  <div class="stats"><div><b class="num">${nf.format(a.downloads)}</b><span>Lượt tải</span></div><div><b class="num">${size(a.size)}</b><span>Dung lượng</span></div><div><b>${esc(ver(a.version))}</b><span>Phiên bản</span></div></div>
+  <div class="stats"><div><b>${esc(ver(a.version))}</b><span>Phiên bản</span></div><div><b class="num">${size(a.size)}</b><span>Dung lượng</span></div><div><b class="num">${a.updatedAt?day(a.updatedAt):'—'}</b><span>Cập nhật</span></div></div>
 </section>
 <div class="dbody">
   <div>
@@ -317,93 +275,12 @@ function detail(id){
   <aside><h2>Thông tin</h2><dl class="info">
     <div><dt>Nhà phát triển</dt><dd>${esc(a.developer)}</dd></div>
     <div><dt>Danh mục</dt><dd>${esc(a.category)}</dd></div>
-    <div><dt>Cập nhật</dt><dd class="num">${day(a.createdAt)}</dd></div>
     <div><dt>Định dạng</dt><dd>APK</dd></div>
   </dl></aside>
 </div>
 ${rel.length?`<div class="sec"><h2>Cùng danh mục</h2></div><div class="tiles">${rel.map(r=>`<a class="tile" href="#/app/${r.id}">${ic(r)}<b>${esc(r.name)}</b><span>${size(r.size)}</span></a>`).join('')}</div>`:''}`;
   $('#cp').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);toast('Đã sao chép liên kết')}catch{toast('Không sao chép được. Hãy sao chép từ thanh địa chỉ.')}};
   tintAll();
-}
-
-/* Quản trị */
-const expired=()=>{tok='';ss.set('');admin();toast('Phiên đăng nhập đã hết hạn. Đăng nhập lại để tiếp tục.')};
-
-function login(){
-  $('#app').innerHTML=`<form class="login" id="lf"><h1>Đăng nhập quản trị</h1><p>Nhập mật khẩu admin để đăng và xóa ứng dụng.</p>
-<label class="field">Mật khẩu<input type="password" name="password" autocomplete="current-password" required></label>
-<p class="err" id="err" role="alert"></p><button class="btn">Đăng nhập</button></form>`;
-  $('#lf input').focus();
-  $('#lf').onsubmit=async e=>{
-    e.preventDefault();
-    try{
-      const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:e.target.password.value})});
-      const j=await r.json();
-      if(!r.ok){$('#err').textContent=(j.error||'Không đăng nhập được')+'. Kiểm tra lại mật khẩu rồi thử lại.';return}
-      tok=j.token;ss.set(tok);admin();
-    }catch{$('#err').textContent='Không kết nối được máy chủ. Thử lại sau.'}
-  };
-}
-
-const arow=a=>`<li>${ic(a)}<div style="min-width:0"><b><a href="#/app/${a.id}">${esc(a.name)}</a></b><div class="meta"><span>${esc(ver(a.version))}</span><span class="num">${size(a.size)}</span><span class="num">${nf.format(a.downloads)} lượt tải</span><span class="num">${day(a.createdAt)}</span></div></div><button class="del" type="button" data-id="${a.id}">Xóa</button></li>`;
-
-function admin(){
-  document.title='Quản trị | AppHub';
-  if(!tok)return login();
-  const dl=apps.reduce((s,a)=>s+a.downloads,0),sz=apps.reduce((s,a)=>s+a.size,0);
-  $('#app').innerHTML=`<div class="adm-h"><h1>Quản trị</h1><button class="btn alt sm" id="lo" type="button">Đăng xuất</button></div>
-<div class="kpi"><div><b class="num">${apps.length}</b><span>Ứng dụng</span></div><div><b class="num">${nf.format(dl)}</b><span>Lượt tải</span></div><div><b class="num">${size(sz)}</b><span>Dung lượng đã dùng</span></div></div>
-<div class="adm">
-<form class="uf" id="uf"><h2>Đăng ứng dụng mới</h2>
-  <label class="field">Tên ứng dụng<input name="name" required maxlength="80" autocomplete="off"></label>
-  <label class="field">Nhà phát triển<input name="developer" maxlength="80" autocomplete="off"></label>
-  <div class="two"><label class="field">Danh mục<select name="category">${CATS.map(c=>`<option>${c}</option>`).join('')}</select></label>
-  <label class="field">Phiên bản<input name="version" value="1.0" maxlength="20"></label></div>
-  <label class="field">Giới thiệu<textarea name="description" rows="4" maxlength="2000"></textarea></label>
-  <div class="two pick">
-    <label class="drop"><input type="file" name="icon" accept="image/png,image/jpeg,image/webp"><span class="dz"><b>Chọn icon</b><small>PNG, JPG hoặc WEBP</small></span></label>
-    <label class="drop"><input type="file" name="apk" accept=".apk"><span class="dz"><b>Chọn file APK</b><small>Tối đa 300 MB</small></span></label>
-  </div>
-  <button class="btn" id="sub">Đăng ứng dụng</button>
-</form>
-<section><h2>Ứng dụng đã đăng</h2>${apps.length?`<ul class="al">${apps.map(arow).join('')}</ul>`:`<p class="none">Chưa có ứng dụng nào. Đăng ứng dụng đầu tiên bằng biểu mẫu.</p>`}</section>
-</div>`;
-  $('#lo').onclick=()=>{tok='';ss.set('');admin()};
-  const f=$('#uf');
-  f.addEventListener('change',e=>{
-    const i=e.target;if(i.type!=='file'||!i.files[0])return;
-    const file=i.files[0];
-    i.closest('.drop').querySelector('.dz').innerHTML=(i.name==='icon'?`<img src="${URL.createObjectURL(file)}" alt="">`:'')+`<span class="fn">${esc(file.name)}</span><small class="num">${size(file.size)}</small>`;
-  });
-  f.querySelectorAll('.drop').forEach(d=>{
-    ['dragenter','dragover'].forEach(v=>d.addEventListener(v,e=>{e.preventDefault();d.classList.add('over')}));
-    ['dragleave','drop'].forEach(v=>d.addEventListener(v,e=>{e.preventDefault();d.classList.remove('over')}));
-    d.addEventListener('drop',e=>{const i=d.querySelector('input');if(e.dataTransfer.files.length){i.files=e.dataTransfer.files;i.dispatchEvent(new Event('change',{bubbles:true}))}});
-  });
-  f.onsubmit=e=>{
-    e.preventDefault();
-    if(!f.name.value.trim())return toast('Nhập tên ứng dụng trước khi đăng.');
-    if(!f.icon.files[0]||!f.apk.files[0])return toast('Chọn icon và file APK trước khi đăng.');
-    const b=$('#sub'),x=new XMLHttpRequest(),reset=()=>{b.disabled=false;b.classList.remove('prog');b.textContent='Đăng ứng dụng'};
-    x.open('POST','/api/admin/apps');x.setRequestHeader('x-token',tok);
-    b.disabled=true;b.classList.add('prog');b.style.setProperty('--p','0%');b.textContent='Đang tải lên 0%';
-    x.upload.onprogress=v=>{if(!v.lengthComputable)return;const p=Math.round(v.loaded/v.total*100);b.style.setProperty('--p',p+'%');b.textContent=p<100?`Đang tải lên ${p}%`:'Đang xử lý'};
-    x.onload=()=>{
-      if(x.status===401)return expired();
-      let j={};try{j=JSON.parse(x.responseText)}catch{}
-      if(x.status>=200&&x.status<300){toast('Đã đăng ứng dụng');route(true)}
-      else{reset();toast(j.error||'Không đăng được ứng dụng. Thử lại sau.')}
-    };
-    x.onerror=()=>{reset();toast('Tải lên bị gián đoạn. Kiểm tra mạng, hoặc đăng xuất rồi đăng nhập lại nếu máy chủ vừa khởi động lại.')};
-    x.send(new FormData(f));
-  };
-  document.querySelectorAll('.del').forEach(b=>b.onclick=async()=>{
-    if(!b.dataset.armed){b.dataset.armed=1;b.textContent='Xác nhận xóa';setTimeout(()=>{delete b.dataset.armed;b.textContent='Xóa'},3500);return}
-    const r=await fetch('/api/admin/apps/'+b.dataset.id,{method:'DELETE',headers:{'x-token':tok}}).catch(()=>null);
-    if(r&&r.status===401)return expired();
-    toast(r&&r.ok?'Đã xóa ứng dụng':'Không xóa được ứng dụng. Thử lại sau.');
-    route(true);
-  });
 }
 
 /* Sự kiện chung */

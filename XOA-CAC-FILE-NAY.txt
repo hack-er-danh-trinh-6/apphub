@@ -1,0 +1,6 @@
+Xóa các file cũ không còn dùng trong repo:
+server.js
+data.json
+app-config.json
+package-lock.json
+(giữ nguyên app.apk và seed/uploads/pop-ai.png)
